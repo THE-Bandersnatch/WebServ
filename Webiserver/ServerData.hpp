@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:09:00 by bgannoun          #+#    #+#             */
-/*   Updated: 2024/05/23 19:28:08 by khaimer          ###   ########.fr       */
+/*   Updated: 2024/05/24 20:28:48 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,13 @@ struct Location
 
 class ServerData{
 	// private:
+		std::string serverName;
+		std::vector<int> ports;
 	public:
 		std::vector<int> servSockets; //no
 		
-		std::string serverName;
 		std::string host;
-		std::vector<int> ports;
+		std::string maxBodySize;
 
 		//MaxBodySize
 		// std::map<std::string, Location> locations;
@@ -58,10 +59,12 @@ class ServerData{
 		std::vector<int> &getServSockets();
 		bool isIaSocket(int i);
 		void addLocation(Location loc);
-		std::string getServerName() const;
 		std::string getHost() const;
 		std::vector<Location> getLocation() const;
 		std::vector<int> getPorts() const;
+		std::string getServerName() const;
+		void	setServerName(std::string const& Value);
+		void parse_server_ports(const std::string& ports, ServerData& server);
 };
 
 #endif
