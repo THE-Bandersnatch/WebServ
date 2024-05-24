@@ -7,7 +7,8 @@
 #include <string>
 
 
-int main() {
+int main() 
+{
     std::ifstream file("ourconfig.conf");
     std::string line;
 
@@ -24,20 +25,23 @@ int main() {
             {
                 if (line.empty()) //end of server
                     break;
-                std::istringstream iss(line);
+                std::istringstream line_stream(line);
                 std::string key, value;
-                if (std::getline(iss, key, '=')) 
+                if (std::getline(line_stream, key, '=')) 
                 {
-                    if (key == "serverName")
-                        iss >> server.serverName;
+                    line_stream >> value;
+                    std::cout << value << std::endl;
+                    exit(0);
+                        // key >> server.serverName;
+                    // if (key.find("serverName") != std::string::npos)
                 }
-                        // std::getline(iss, server.serverName);
+                        // std::getline(line_stream, server.serverName);
                 //     else if (key == "port") 
-                //         iss >> server.port;
+                //         line_stream >> server.port;
                 //     else if (key == "host")
-                //         std::getline(iss, server.host);
+                //         std::getline(line_stream, server.host);
                 //     else if (key == "maxBodySize")
-                //         iss >> server.maxBodySize;
+                //         line_stream >> server.maxBodySize;
                 // }
             }
             servers.push_back(server); // Add the server to the vector of servers
