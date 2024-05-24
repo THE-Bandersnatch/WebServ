@@ -2,10 +2,10 @@
 
 int main() 
 {
+    std::vector<ServerData> servers;
     std::ifstream file("ourconfig.conf");
     std::string line;
-
-    std::vector<ServerData> servers;
+    // int hissabat = 0;
 
     while (std::getline(file, line)) 
     {
@@ -30,17 +30,26 @@ int main()
                     server.setHost(value);
                 else if (std::strstr(key.c_str(), "maxBodySize") != nullptr)
                     server.setmaxBodySize(value);
+                if (std::strstr(line.c_str(), "location:") != nullptr)
+                {
+                    int start = line.find_first_of("(") + 1;
+                    int end = line.find_first_of(")");
+                    std::string path = line.substr(start, end - start); //Path ready
+
+                    std::cout << path << "(Path Detected) =-=--=-=-=-=-=-=-=-=-=-\n";
+                }
             }
             servers.push_back(server); // Add the server to the vector of servers
         }
+        
     }
 
     for (size_t i = 0; i < servers.size(); i++)
     {
         std::cout << std::endl << "[ SERVER " << i << " ]\n";
-        std::cout << servers[i].getServerName() << "   << server name\n";
-        std::cout << servers[i].getHost() << " << host\n";
-        std::cout << servers[i].getMaxbodysize() << " <<  Max Size\n";
+        std::cout << servers[i].getServerName() << "  (server name)\n";
+        std::cout << servers[i].getHost() << "  (host)\n";
+        std::cout << servers[i].getMaxbodysize() << "  (Max Size)\n";
         servers[i].printport();
         
     }

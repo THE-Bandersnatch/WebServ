@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:09:00 by bgannoun          #+#    #+#             */
-/*   Updated: 2024/05/24 22:20:19 by khaimer          ###   ########.fr       */
+/*   Updated: 2024/05/24 23:45:22 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,16 @@
 #include <vector>
 #include <string>
 
-// struct Location
-// {
-// 	std::string path;
-// 	std::string root;
-// 	std::vector<std::string> acceptedMethods;
-// 	std::string index;
-// 	bool autoIndex;
-// 	std::string uploadPath;
-// 	std::string cgiPath;
-// };
+struct Location
+{
+	std::string path;
+	std::string root;
+	std::vector<std::string> acceptedMethods;
+	std::string index;
+	bool autoIndex;
+	std::string uploadPath;
+	std::string cgiPath;
+};
 
 class ServerData{
 	private:
@@ -43,6 +43,7 @@ class ServerData{
 		std::vector<int> ports;
 		std::string host;
 		std::string maxBodySize;
+		Location data;
 	public:
 		void	setServerName(std::string const& Value);
 		void	setHost(std::string const& Value);
@@ -58,17 +59,8 @@ class ServerData{
 };
 
 
-
-
-		//MaxBodySize
 		// std::map<std::string, Location> locations;
 		// Location loc;
 		// loc.path = "fdsaf";
 		// locations["/"] = loc;
-		// ServerData(){}
-		// ServerData(std::string servName, std::string ho, std::vector<int> portss);
-		// std::vector<int> &getServSockets();
-		// bool isIaSocket(int i);
-		// void addLocation(Location loc);
-		// std::vector<Location> getLocation() const;
 		
