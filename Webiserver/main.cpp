@@ -59,6 +59,7 @@ int main()
                     server.setmaxBodySize(value);
                 if (std::strstr(line.c_str(), "location:") != nullptr)
                 {
+                    int location_number = 1;
                     Location *tmp = new Location;
                     
                     int start = line.find_first_of("(") + 1;
@@ -70,34 +71,44 @@ int main()
                         if(std::strstr(line.c_str(), "root") != nullptr)
                         {
                             start = line.find_first_of("=") + 1;
-                            tmp->root = line.substr(start, line.size());
-                            std::cout << tmp->root << "   ID: " << i << "    <\n";
+                            tmp->root = line.substr(start, line.size()); //root
                         }
+                        //NEED CgiPath
                         else if(std::strstr(line.c_str(), "index") != nullptr)
                         {
                             start = line.find_first_of("=") + 1;
                             tmp->index = line.substr(start, end - start); //index
                         }
+                        else if(std::strstr(line.c_str(), "autoIndex") != nullptr) //Boolean
+                        {
+                            if (std::strstr(key.c_str(), "on") != nullptr)
+                                tmp->autoIndex = true;
+                            else
+                                tmp->autoIndex = false;
+                        }
+                        else if(std::strstr(line.c_str(), "upload_path") != nullptr)
+                        {
+                            start = line.find_first_of("=") + 1;
+                            tmp->uploadPath = line.substr(start, end - start); //Upload Path
+                            std::cout << tmp->uploadPath << std::endl;
+                        }
                     }
-                    std::cout << tmp->index << std::endl;
-                    exit(0);
-                    
-
-
-                    // server.setLocation(tmp->path, tmp);
+                    server.setLocation(location_number, tmp); //ADD location to server
                 }
             }
             servers.push_back(server); // Add the server to the vector of servers
         }   
     }
+    for (size_t i = 0; i < servers.size(); i++)
+    {
+        std::cout << std::endl << "[ SERVER " << i << " ]\n";
+        std::cout << servers[i].getServerName() << "  (server name)\n";
+        std::cout << servers[i].getHost() << "  (host)\n";
+        std::cout << servers[i].getMaxbodysize() << "  (Max Size)\n";
+        servers[i].printport();
+        
+        
+        
+    }
     return 0;
 }
-    // for (size_t i = 0; i < servers.size(); i++)
-    // {
-    //     std::cout << std::endl << "[ SERVER " << i << " ]\n";
-    //     std::cout << servers[i].getServerName() << "  (server name)\n";
-    //     std::cout << servers[i].getHost() << "  (host)\n";
-    //     std::cout << servers[i].getMaxbodysize() << "  (Max Size)\n";
-    //     servers[i].printport();
-        
-    // }

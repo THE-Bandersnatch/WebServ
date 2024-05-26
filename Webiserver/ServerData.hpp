@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:09:00 by bgannoun          #+#    #+#             */
-/*   Updated: 2024/05/26 13:35:32 by khaimer          ###   ########.fr       */
+/*   Updated: 2024/05/26 21:36:03 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@
 
 struct Location
 {
-	std::string path;
-	std::string root;
+	std::string path; //ready
+	std::string root; //ready
 	std::vector<std::string> acceptedMethods; //ready
 	std::string index; //ready
-	bool autoIndex;
-	std::string uploadPath;
+	bool autoIndex; //ready
+	std::string uploadPath; //done
 	std::string cgiPath;
 };
 
@@ -43,7 +43,7 @@ class ServerData{
 		std::vector<int> ports;
 		std::string host;
 		std::string maxBodySize;
-		std::map<std::string, Location*> locations;
+		std::map<int, Location*> locations;
 	public:
 		void	setServerName(std::string const& Value);
 		void	setHost(std::string const& Value);
@@ -55,7 +55,9 @@ class ServerData{
 		std::vector<int> getPorts() const;
 
 		void	printport();
-		void setLocation(const std::string& locationPath, Location* locationData);
+		// void setLocation(const std::string& locationPath, Location* locationData);
+		void	setLocation(int number, Location* locationData);
+
 		
 };
 
