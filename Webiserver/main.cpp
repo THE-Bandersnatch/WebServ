@@ -73,12 +73,13 @@ int main()
                             tmp->root = line.substr(start, line.size());
                             std::cout << tmp->root << "   ID: " << i << "    <\n";
                         }
-                        else if(std::strstr(line.c_str(), "acceptedMethods") != nullptr)
+                        else if(std::strstr(line.c_str(), "index") != nullptr)
                         {
                             start = line.find_first_of("=") + 1;
-                            tmp->acceptedMethods = parse_accepted_methods(line.substr(start, line.size())); 
+                            tmp->index = line.substr(start, end - start); //index
                         }
                     }
+                    std::cout << tmp->index << std::endl;
                     exit(0);
                     
 

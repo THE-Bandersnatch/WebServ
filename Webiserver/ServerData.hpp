@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:09:00 by bgannoun          #+#    #+#             */
-/*   Updated: 2024/05/26 12:03:30 by khaimer          ###   ########.fr       */
+/*   Updated: 2024/05/26 13:35:32 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ struct Location
 {
 	std::string path;
 	std::string root;
-	std::vector<std::string> acceptedMethods;
-	std::string index;
+	std::vector<std::string> acceptedMethods; //ready
+	std::string index; //ready
 	bool autoIndex;
 	std::string uploadPath;
 	std::string cgiPath;
