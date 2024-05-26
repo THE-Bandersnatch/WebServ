@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:37:13 by khaimer           #+#    #+#             */
-/*   Updated: 2024/05/24 23:20:05 by khaimer          ###   ########.fr       */
+/*   Updated: 2024/05/26 12:04:08 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,9 @@ void	ServerData::printport() //solo
     std::cout << "(hosts)\n";
 }
 
+void ServerData::setLocation(const std::string& locationPath, Location* locationData)
+{
+    this->locations[locationPath] = locationData;
+    std::cout << "KHALIL IS HERE\n";
+}
 
