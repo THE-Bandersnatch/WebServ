@@ -1,5 +1,6 @@
 #include "ServerData.hpp"
-
+#include <iostream>
+#include <cstring>
 
 std::vector<std::string> parse_accepted_methods(const std::string& methods_string) 
 {
@@ -40,6 +41,7 @@ int main()
             continue;
         if (line.find("[server]") != std::string::npos)
         {
+            int location_number = 1;
             ServerData server; // Start of a new server block
             while (std::getline(file, line)) 
             {
@@ -59,7 +61,6 @@ int main()
                     server.setmaxBodySize(value);
                 if (std::strstr(line.c_str(), "location:") != nullptr)
                 {
-                    int location_number = 1;
                     Location *tmp = new Location;
                     
                     int start = line.find_first_of("(") + 1;
@@ -77,7 +78,9 @@ int main()
                         else if(std::strstr(line.c_str(), "index") != nullptr)
                         {
                             start = line.find_first_of("=") + 1;
-                            tmp->index = line.substr(start, end - start); //index
+                            tmp->index = line.substr(start, line.size() - start); //index
+                            // std::cout << tmp->index << std::endl;
+                            // exit(0);
                         }
                         else if(std::strstr(line.c_str(), "autoIndex") != nullptr) //Boolean
                         {
@@ -89,23 +92,25 @@ int main()
                         else if(std::strstr(line.c_str(), "upload_path") != nullptr)
                         {
                             start = line.find_first_of("=") + 1;
-                            tmp->uploadPath = line.substr(start, end - start); //Upload Path
-                            std::cout << tmp->uploadPath << std::endl;
+                            tmp->uploadPath = line.substr(start, line.size() - start); //Upload Path
                         }
                     }
                     server.setLocation(location_number, tmp); //ADD location to server
+                    location_number++;
                 }
             }
             servers.push_back(server); // Add the server to the vector of servers
+            location_number = 1;
         }   
     }
     for (size_t i = 0; i < servers.size(); i++)
     {
         std::cout << std::endl << "[ SERVER " << i << " ]\n";
+        servers[i].printport();
         std::cout << servers[i].getServerName() << "  (server name)\n";
         std::cout << servers[i].getHost() << "  (host)\n";
         std::cout << servers[i].getMaxbodysize() << "  (Max Size)\n";
-        servers[i].printport();
+        servers[i].printLocation();
         
         
         

@@ -80,7 +80,7 @@ void	ServerData::printport() //solo
     {
         std::cout << this->ports[i] << " ";
     }
-    std::cout << "(hosts)\n";
+    std::cout << "(port)\n";
 }
 
 void ServerData::setLocation(int number, Location* locationData)
@@ -88,3 +88,22 @@ void ServerData::setLocation(int number, Location* locationData)
     this->locations[number] = locationData;
 }
 
+void	ServerData::printLocation()
+{
+    for (std::map<int, Location*>::iterator it = this->locations.begin(); it != this->locations.end(); it++)
+    {
+        std::cout << "Location number: " << it->first << std::endl;
+        std::cout << "Path: " << it->second->path << std::endl;
+        std::cout << "Root: " << it->second->root << std::endl;
+        std::cout << "Index: " << it->second->index << std::endl;
+        std::cout << "AutoIndex: " << it->second->autoIndex << std::endl;
+        std::cout << "UploadPath: " << it->second->uploadPath << std::endl;
+        std::cout << "CgiPath: " << std::endl;
+        std::cout << "AcceptedMethods: " << it->second->acceptedMethods.size() << std::endl;
+        for (size_t i = 0; i < it->second->acceptedMethods.size(); i++)
+        {
+            std::cout << it->second->acceptedMethods[i] << " ";
+        }
+        std::cout << std::endl;
+    }
+}

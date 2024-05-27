@@ -55,6 +55,7 @@ class ServerData{
 		std::vector<int> getPorts() const;
 
 		void	printport();
+		void	printLocation();
 		// void setLocation(const std::string& locationPath, Location* locationData);
 		void	setLocation(int number, Location* locationData);
 
