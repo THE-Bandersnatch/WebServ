@@ -94,6 +94,11 @@ int main()
                             start = line.find_first_of("=") + 1;
                             tmp->uploadPath = line.substr(start, line.size() - start); //Upload Path
                         }
+                        else if(std::strstr(line.c_str(), "cgi_extentions") != nullptr)
+                        {
+                            start = line.find_first_of("=") + 1;
+                            tmp->cgiPath = line.substr(start, line.size() - start); //Upload Path
+                        }
                     }
                     server.setLocation(location_number, tmp); //ADD location to server
                     location_number++;

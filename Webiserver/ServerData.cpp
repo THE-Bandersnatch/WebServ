@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:37:13 by khaimer           #+#    #+#             */
-/*   Updated: 2024/05/26 21:36:50 by khaimer          ###   ########.fr       */
+/*   Updated: 2024/05/27 14:25:47 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	ServerData::printLocation()
         std::cout << "UploadPath: " << it->second->uploadPath << std::endl;
         std::cout << "CgiPath: " << std::endl;
         std::cout << "AcceptedMethods: " << it->second->acceptedMethods.size() << std::endl;
+        std::cout << "cgiExtentions: " << it->second->cgiPath << std::endl;
         for (size_t i = 0; i < it->second->acceptedMethods.size(); i++)
         {
             std::cout << it->second->acceptedMethods[i] << " ";
