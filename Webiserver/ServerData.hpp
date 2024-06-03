@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:09:00 by bgannoun          #+#    #+#             */
-/*   Updated: 2024/05/27 14:24:36 by khaimer          ###   ########.fr       */
+/*   Updated: 2024/06/03 17:55:05 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,34 @@
 #include <vector>
 #include <string>
 
-struct Location
-{
-	std::string path; //ready
-	std::string root; //ready
-	std::vector<std::string> acceptedMethods; //ready
-	std::string index; //ready
-	bool autoIndex; //ready
-	std::string uploadPath; //done
-	std::string cgiPath;
+// struct Location
+// {
+// 	std::string path; //ready
+// 	std::string root; //ready
+// 	std::vector<std::string> acceptedMethods; //ready
+// 	std::string index; //ready
+// 	bool autoIndex; //ready
+// 	std::string uploadPath; //done
+// 	std::string cgiPath;
+// };
+
+class location{
+	private:
+		std::string path;
+		std::map<std::string, std::string> directive;
+	public:
+		location(){}
+		location(const std::string &p) : path(p) {}
+		void addDirective(const std::string &direc, const std::string &value){
+			directive[direc] = value;
+		}
+		std::string getDirective(const std::string &key)
+		{
+			std::map<std::string, std::string>::iterator it = directive.find(key);
+			if (it != directive.end())
+				return (it->second);
+			return ("");
+		}
 };
 
 class ServerData{
@@ -43,7 +62,7 @@ class ServerData{
 		std::vector<int> ports;
 		std::string host;
 		std::string maxBodySize;
-		std::map<int, Location*> locations;
+		std::map<int, location> locations;
 	public:
 		void	setServerName(std::string const& Value);
 		void	setHost(std::string const& Value);
@@ -55,9 +74,9 @@ class ServerData{
 		std::vector<int> getPorts() const;
 
 		void	printport();
-		void	printLocation();
+		// void	printLocation();
 		// void setLocation(const std::string& locationPath, Location* locationData);
-		void	setLocation(int number, Location* locationData);
+		void	setLocation(int number, location locationData);
 
 		
 };

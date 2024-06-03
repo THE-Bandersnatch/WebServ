@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:37:13 by khaimer           #+#    #+#             */
-/*   Updated: 2024/05/27 14:25:47 by khaimer          ###   ########.fr       */
+/*   Updated: 2024/06/03 17:58:46 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,28 +83,28 @@ void	ServerData::printport() //solo
     std::cout << "(port)\n";
 }
 
-void ServerData::setLocation(int number, Location* locationData)
+void ServerData::setLocation(int number, location locationData)
 {
     this->locations[number] = locationData;
 }
 
-void	ServerData::printLocation()
-{
-    for (std::map<int, Location*>::iterator it = this->locations.begin(); it != this->locations.end(); it++)
-    {
-        std::cout << "Location number: " << it->first << std::endl;
-        std::cout << "Path: " << it->second->path << std::endl;
-        std::cout << "Root: " << it->second->root << std::endl;
-        std::cout << "Index: " << it->second->index << std::endl;
-        std::cout << "AutoIndex: " << it->second->autoIndex << std::endl;
-        std::cout << "UploadPath: " << it->second->uploadPath << std::endl;
-        std::cout << "CgiPath: " << std::endl;
-        std::cout << "AcceptedMethods: " << it->second->acceptedMethods.size() << std::endl;
-        std::cout << "cgiExtentions: " << it->second->cgiPath << std::endl;
-        for (size_t i = 0; i < it->second->acceptedMethods.size(); i++)
-        {
-            std::cout << it->second->acceptedMethods[i] << " ";
-        }
-        std::cout << std::endl;
-    }
-}
+// void	ServerData::printLocation()
+// {
+//     for (std::map<int, location>::iterator it = this->locations.begin(); it != this->locations.end(); it++)
+//     {
+//         std::cout << "Location number: " << first << std::endl;
+//         std::cout << "Path: " << second->path << std::endl;
+//         std::cout << "Root: " << second->root << std::endl;
+//         std::cout << "Index: " << second->index << std::endl;
+//         std::cout << "AutoIndex: " << second->autoIndex << std::endl;
+//         std::cout << "UploadPath: " << second->uploadPath << std::endl;
+//         std::cout << "CgiPath: " << std::endl;
+//         std::cout << "AcceptedMethods: " << second->acceptedMethods.size() << std::endl;
+//         std::cout << "cgiExtentions: " << second->cgiPath << std::endl;
+//         for (size_t i = 0; i < second->acceptedMethods.size(); i++)
+//         {
+//             std::cout << second->acceptedMethods[i] << " ";
+//         }
+//         std::cout << std::endl;
+//     }
+// }
