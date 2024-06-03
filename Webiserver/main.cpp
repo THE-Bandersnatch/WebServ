@@ -65,24 +65,24 @@ int main()
                     int start = line.find_first_of("(") + 1;
                     int end = line.find_first_of(")");
                     location khalil(line.substr(start, end - start));
-                    // tmp->path = line.substr(start, end - start); //Path ready
                     for (size_t i = 0; i < 6; i++)
                     {
                         std::getline(file, line);
-                        if(std::strstr(line.c_str(), "root") != nullptr)
+                        if(std::strstr(line.c_str(), "root") != nullptr) //1
                         {
                             start = line.find_first_of("=") + 1;
-                            // tmp->root = line.substr(start, line.size()); //root
                             khalil.addDirective("root", line.substr(start, line.size() - start - 1));
                         }
                         //NEED CgiPath
                         else if(std::strstr(line.c_str(), "index") != nullptr)
                         {
                             start = line.find_first_of("=") + 1;
-                            // tmp->index = line.substr(start, line.size() - start); //index
                             khalil.addDirective("index", line.substr(start, line.size() - start - 1));
-                            // std::cout << tmp->index << std::endl;
-                            // exit(0);
+                        }
+                        else if(std::strstr(line.c_str(), "cgi_extentions") != nullptr)
+                        {
+                            start = line.find_first_of("=") + 1;
+                            khalil.addDirective("cgi_extentions", line.substr(start, line.size() - start - 1));
                         }
                         else if(std::strstr(line.c_str(), "autoIndex") != nullptr) //Boolean
                         {
@@ -94,14 +94,17 @@ int main()
                         else if(std::strstr(line.c_str(), "upload_path") != nullptr)
                         {
                             start = line.find_first_of("=") + 1;
-                            // tmp->uploadPath = line.substr(start, line.size() - start); //Upload Path
                             khalil.addDirective("upload_path", line.substr(start, line.size() - start - 1));
                         }
                         else if(std::strstr(line.c_str(), "cgi_extentions") != nullptr)
                         {
                             start = line.find_first_of("=") + 1;
-                            // tmp->cgiPath = line.substr(start, line.size() - start); //Upload Path
                             khalil.addDirective("cgi_extentions", line.substr(start, line.size() - start - 1));
+                        }
+                        else if(std::strstr(line.c_str(), "acceptedMethods") != nullptr)
+                        {
+                            start = line.find_first_of("=") + 1;
+                            khalil.addDirective("acceptedMethods", line.substr(start, line.size() - start - 1));
                         }
                     }
                     server.setLocation(location_number, khalil); //ADD location to server
@@ -112,17 +115,25 @@ int main()
             location_number = 1;
         }   
     }
-    for (size_t i = 0; i < servers.size(); i++)
+    for (size_t i = 0; i < servers.size(); i++) 
     {
         std::cout << std::endl << "[ SERVER " << i << " ]\n";
         servers[i].printport();
         std::cout << servers[i].getServerName() << "  (server name)\n";
         std::cout << servers[i].getHost() << "  (host)\n";
         std::cout << servers[i].getMaxbodysize() << "  (Max Size)\n";
-        // servers[i].printLocation();
-        
-        
-        
+
+        std::map<int, location> locations = servers[i].get_locations();
+        std::cout << "------ Locations ------\n";
+        for (std::map<int, location>::iterator it = locations.begin(); it != locations.end(); ++it) 
+        {
+            std::cout << "[ LOCATION " << it->first << " ]\n";
+            it->second.printDirectives();
+            std::cout << "-----------------------\n";
+        }
+    std::cout << "-----------------------\n";
     }
+
     return 0;
+
 }

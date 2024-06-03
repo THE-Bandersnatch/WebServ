@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:09:00 by bgannoun          #+#    #+#             */
-/*   Updated: 2024/06/03 17:55:05 by khaimer          ###   ########.fr       */
+/*   Updated: 2024/06/03 22:21:20 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ class location{
 				return (it->second);
 			return ("");
 		}
+		void printDirectives(){
+        for (std::map<std::string, std::string>::const_iterator it = directive.begin(); it != directive.end(); ++it) {
+            std::cout << it->first << ": " << it->second << std::endl;
+        }
+    }
 };
 
 class ServerData{
@@ -69,9 +74,10 @@ class ServerData{
 		void	setmaxBodySize(std::string const& Value);
 		void	parse_server_ports(const std::string& ports, ServerData& server);
 		std::string		getMaxbodysize() const;
-		std::string getHost() const;
-		std::string getServerName()const;
+		std::string 	getHost() const;
+		std::string 	getServerName()const;
 		std::vector<int> getPorts() const;
+		std::map<int, location> get_locations();
 
 		void	printport();
 		// void	printLocation();
