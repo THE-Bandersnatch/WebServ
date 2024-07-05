@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:09:00 by bgannoun          #+#    #+#             */
-/*   Updated: 2024/07/05 17:04:33 by khaimer          ###   ########.fr       */
+/*   Updated: 2024/07/05 17:35:30 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ class ServerData{
 		std::string maxBodySize;
 
 		
-		std::map<int, Location> locations;
-		// std::vector<Location> locations;
+		// std::map<int, Location> locations;
+		std::vector<Location> locations;
 	public:
 		void			setServerName(std::string const& Value);
 		std::string 	getServerName()const;
@@ -87,8 +87,10 @@ class ServerData{
 
 
 		
-		std::map<int, Location> get_locations();
-		void	setLocation(int number, Location locationData);
+		std::vector<Location> get_locations();
+		
+		// void	setLocation(int number, Location locationData);
+		void	setLocation(Location locationData);
 
 		void	printport();
 		// void	printLocation();

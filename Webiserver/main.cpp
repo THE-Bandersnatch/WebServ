@@ -91,7 +91,7 @@ std::vector<ServerData> parseConfigFile(const std::string& filename) {
                             khalil.addDirective("acceptedMethods", line.substr(start, line.size() - start - 1));
                         }
                     }
-                    server.setLocation(location_number, khalil); // Add location to server
+                    server.setLocation(khalil); // Add location to server
                     location_number++;
                 }
             }
@@ -109,11 +109,11 @@ void printServers(std::vector<ServerData>& servers) {
         std::cout << servers[i].getHost() << "  (host)\n";
         std::cout << servers[i].getMaxbodysize() << "  (Max Size)\n";
 
-        std::map<int, Location> locations = servers[i].get_locations();
+        std::vector<Location> locations = servers[i].get_locations();
         std::cout << "------ Locations ------\n";
-        for (std::map<int, Location>::iterator it = locations.begin(); it != locations.end(); ++it) {
-            std::cout << "[ LOCATION " << it->first << " ]\n";
-            it->second.printDirectives();
+        for (std::vector<Location>::iterator it = locations.begin(); it != locations.end(); ++it) {
+            std::cout << "[ LOCATION " << i << " ]\n";
+            it->printDirectives();
             std::cout << "-----------------------\n";
         }
         std::cout << "-----------------------\n";
