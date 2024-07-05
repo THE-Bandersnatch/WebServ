@@ -64,7 +64,7 @@ std::vector<ServerData> parseConfigFile(const std::string& filename) {
                 if (std::strstr(line.c_str(), "location:") != nullptr) {
                     int start = line.find_first_of("(") + 1;
                     int end = line.find_first_of(")");
-                    location khalil(line.substr(start, end - start));
+                    Location khalil(line.substr(start, end - start)); //Storing location
                     for (size_t i = 0; i < 6; i++) {
                         if (!std::getline(file, line) || line.empty())
                             break;
@@ -109,9 +109,9 @@ void printServers(std::vector<ServerData>& servers) {
         std::cout << servers[i].getHost() << "  (host)\n";
         std::cout << servers[i].getMaxbodysize() << "  (Max Size)\n";
 
-        std::map<int, location> locations = servers[i].get_locations();
+        std::map<int, Location> locations = servers[i].get_locations();
         std::cout << "------ Locations ------\n";
-        for (std::map<int, location>::iterator it = locations.begin(); it != locations.end(); ++it) {
+        for (std::map<int, Location>::iterator it = locations.begin(); it != locations.end(); ++it) {
             std::cout << "[ LOCATION " << it->first << " ]\n";
             it->second.printDirectives();
             std::cout << "-----------------------\n";

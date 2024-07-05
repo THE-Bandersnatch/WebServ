@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:09:00 by bgannoun          #+#    #+#             */
-/*   Updated: 2024/06/03 22:21:20 by khaimer          ###   ########.fr       */
+/*   Updated: 2024/07/05 17:04:33 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@
 // 	std::string cgiPath;
 // };
 
-class location{
+class Location{
 	private:
 		std::string path;
 		std::map<std::string, std::string> directive;
 	public:
-		location(){}
-		location(const std::string &p) : path(p) {}
+		Location(){}
+		Location(const std::string &p) : path(p) {}
 		void addDirective(const std::string &direc, const std::string &value){
 			directive[direc] = value;
 		}
@@ -67,22 +67,32 @@ class ServerData{
 		std::vector<int> ports;
 		std::string host;
 		std::string maxBodySize;
-		std::map<int, location> locations;
+
+		
+		std::map<int, Location> locations;
+		// std::vector<Location> locations;
 	public:
-		void	setServerName(std::string const& Value);
-		void	setHost(std::string const& Value);
-		void	setmaxBodySize(std::string const& Value);
-		void	parse_server_ports(const std::string& ports, ServerData& server);
-		std::string		getMaxbodysize() const;
-		std::string 	getHost() const;
+		void			setServerName(std::string const& Value);
 		std::string 	getServerName()const;
-		std::vector<int> getPorts() const;
-		std::map<int, location> get_locations();
+		
+		void				parse_server_ports(const std::string& ports, ServerData& server);
+		std::vector<int> 	getPorts() const;
+		
+		void			setHost(std::string const& Value);
+		std::string 	getHost() const;
+		
+		void			setmaxBodySize(std::string const& Value);
+		std::string		getMaxbodysize() const; //Return Should be in sizeT
+
+
+
+		
+		std::map<int, Location> get_locations();
+		void	setLocation(int number, Location locationData);
 
 		void	printport();
 		// void	printLocation();
 		// void setLocation(const std::string& locationPath, Location* locationData);
-		void	setLocation(int number, location locationData);
 
 		
 };

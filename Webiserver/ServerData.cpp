@@ -6,7 +6,7 @@
 /*   By: khaimer <khaimer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 18:37:13 by khaimer           #+#    #+#             */
-/*   Updated: 2024/06/03 22:21:01 by khaimer          ###   ########.fr       */
+/*   Updated: 2024/07/05 17:07:08 by khaimer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ void	ServerData::printport() //solo
     std::cout << "(port)\n";
 }
 
-void ServerData::setLocation(int number, location locationData)
+void ServerData::setLocation(int number, Location locationData)
 {
     this->locations[number] = locationData;
 }
 
-std::map<int, location> ServerData::get_locations()
+std::map<int, Location> ServerData::get_locations()
 {
     return this->locations;
 }
